@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 
 
 let therapistsSchema = new mongoose.Schema({
-examCode:String,
+diagnoseTypeCode:String,
 examTypeCode:String , 
 patientId:String ,
 tCode:String ,
-startDate:String ,
-checkDate:String
+startDate:String,
+conclusionD:String
 })
 
-exports.ExamsModel = mongoose.model("exams" , examsSchema)
+exports.DiagnosesModel = mongoose.model("diagnoses" , diagnosesSchema)
