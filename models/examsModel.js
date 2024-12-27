@@ -2,7 +2,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 
-let therapistsSchema = new mongoose.Schema({
+let examsSchema = new mongoose.Schema({
 examCode:String,
 examTypeCode:String , 
 patientId:String ,
