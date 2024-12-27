@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "676523989d1ebc40e52a3b0a"
+  },
+  "id": 3222666888,
+  "firstName": "Alex",
+  "lastName": "Schwarchvald",
+  "age": 34,
+  "address": "Herzel",
+  "email": "alixo777@gmail.com",
+  "phoneNumber": "054-1234567",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676523c69d1ebc40e52a3b0d"
+  },
+  "id": 3222666888,
+  "firstName": "Shalev",
+  "lastName": "Uziel",
+  "age": 22,
+  "address": "Max and Shain",
+  "email": "shalevu56@gmail.com",
+  "phoneNumber": "054-3245678",
+  "__v": 0
+}]

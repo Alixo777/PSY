@@ -1,0 +1,17 @@
+{
+  "name": "node_24",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "mongoose": "^8.8.4"
+  },
+  "main": "app.js",
+  "description": ""
+}
