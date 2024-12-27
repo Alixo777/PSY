@@ -7,7 +7,7 @@ examCode:String,
 examTypeCode:String , 
 lastName:String , 
 patientId ,
-img:String,
+tCode:String ,
 therapists: [{ type: ObjectId, ref: 'therapist' }]
 
 })

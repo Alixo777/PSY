@@ -6,9 +6,8 @@ let therapistsSchema = new mongoose.Schema({
 tCode:String,
 firstName:String , 
 lastName:String , 
-patientId: ,
 img:String,
-therapists: [{ type: ObjectId, ref: 'therapist' }]
+patients: [{ type: ObjectId, ref: 'patient' }]
 
 })
 
