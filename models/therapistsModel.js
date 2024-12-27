@@ -7,8 +7,7 @@ tCode:String,
 firstName:String , 
 lastName:String , 
 img:String,
-patients: [{ type: ObjectId, ref: 'patient' }]
-
+patients: String [{ type: ObjectId, ref: 'patient' }]
 })
 
 // אנחנו צריכים לייצא את המודל שבנוי משם הקולקשן אליו נרצה לשלוח מידע שיעבור בסכמה ומשם הסכמה עצמה
