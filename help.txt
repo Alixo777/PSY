@@ -1,0 +1,54 @@
+תעשה בגיט גם אלכס
+
+PS C:\Users\shale\Documents\psy> git init
+Initialized empty Git repository in C:/Users/shale/Documents/psy/.git/
+PS C:\Users\shale\Documents\psy> git init
+Initialized empty Git repository in C:/Users/shale/Documents/psy/.git/
+PS C:\Users\shale\Documents\psy> git add .
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'users.patients.json', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\shale\Documents\psy> git commit -m "start git"
+[master (root-commit) b09c810] start git
+ 20 files changed, 1601 insertions(+) 
+ create mode 100644 .gitignore        
+ create mode 100644 app.js
+ create mode 100644 db/mongoConnect.js
+ create mode 100644 hw/HW.txt
+ create mode 100644 models/examsModel.js
+ create mode 100644 models/patientsModel.js
+ create mode 100644 models/sitesModel.js
+ create mode 100644 models/testMo.js
+ create mode 100644 models/therapistsModel.js
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 public/sites.html
+ create mode 100644 public/summer.html
+ create mode 100644 r.txt
+ create mode 100644 routes/config_routes.js
+ create mode 100644 routes/index.js
+ create mode 100644 routes/patients.js
+ create mode 100644 routes/sites.js
+ create mode 100644 routes/users.js
+ create mode 100644 users.patients.json
+
+צריך: 
+לכל טבלה צריך לעשות ראוטר משלו 
+משתמשים
+מטפלים
+ץץץ
+
+
+ליצור מערך של מטופלים בתוך מטפל בסכמה
+ולהוסיף את id של המשתמש לתוך המטפל
+
+תמיד יש id  אוטומטי מהמונגו
+
+
+להוסיף מערך בתוך מטפל שהמערך הזה מקושר למשתמשים 
+
+מטפל = new Schema({
+תז סטרינג
+קוד נאמבק
+מטופלים: [{ type: ObjectId, ref: 'מטופל' }]
+}
