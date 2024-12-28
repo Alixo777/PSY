@@ -1,29 +1,27 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
-
+const { ObjectId } = mongoose.Schema.Types;
 
 let therapistsSchema = new mongoose.Schema({
-tCode:String,
-firstName:String , 
-lastName:String , 
-img:String,
-patients: String [{ type: ObjectId, ref: 'patient' }]
-})
+  tCode: String,
+  firstName: String,
+  lastName: String,
+  img: String,
+  patients: [{ type: ObjectId, ref: 'patients' }] // Array of ObjectId referencing 'patients' collection
+});
 
-// אנחנו צריכים לייצא את המודל שבנוי משם הקולקשן אליו נרצה לשלוח מידע שיעבור בסכמה ומשם הסכמה עצמה
-exports.therapistsSchema = mongoose.model("therapists" , therapistsSchema)
-// שם המודל חייב להתחיל עם אות גדולה + שם הקולקשן חייב להסתיים עם אס 
-// TODO:
-// Validation
+// Model export
+exports.therapistsSchema = mongoose.model("Therapists", therapistsSchema);
 
-
+// Validation function
 exports.validateUser = (reqBody) => {
-    const joiSchema = Joi.object({
-      name: Joi.string().min(3).max(99).required(),  // Fixed to string
-      lastName: Joi.string().min(3).max(99).required(),
-      age: Joi.number().min(18).max(120).required(),
-      img: Joi.string().optional()  // Optional string field for image
-    });
-  
-    return joiSchema.validate(reqBody);  // Use reqBody to validate
-  }
+  const joiSchema = Joi.object({
+    tCode: Joi.string().required().min(3).max(20), // tCode is required and has length constraints
+    firstName: Joi.string().required().min(2).max(50), // firstName is required, length between 2-50
+    lastName: Joi.string().required().min(2).max(50), // lastName is required, length between 2-50
+    img: Joi.string().uri().optional(), // img is optional and should be a valid URI if present
+    patients: Joi.array().items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/)).optional(), // Array of ObjectId strings (patient references)
+  });
+
+  return joiSchema.validate(reqBody); // Validate the reqBody using the schema
+};
