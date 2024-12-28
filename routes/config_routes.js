@@ -2,6 +2,11 @@ const indexR = require('./index');
 const usersR = require('./users');
 const patientsR = require('./patients');
 const sitesR = require('./sites');
+const diagnosesR = require('./diagnoses');
+const examsR = require('./exams');
+const meetsR = require('./meets');
+const therapistsR = require('./therapists');
+
 
 
 
@@ -10,6 +15,13 @@ exports.routesInit = (app) => {
     app.use("/users" , usersR)
     app.use("/patients" , patientsR)
     app.use("/sites" , sitesR)
+    app.use("/diagnoses" , diagnosesR)
+    app.use("/exams" , examsR)
+    app.use("/meets" , meetsR)
+    app.use("/therapists" , therapistsR)
+
+
+
 
 
 }
