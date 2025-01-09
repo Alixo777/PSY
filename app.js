@@ -17,4 +17,6 @@ routesInit(app);
 const server = http.createServer(app);
 
 const PORT = 3003;
+console.log("App is up");
+
 server.listen(PORT);
