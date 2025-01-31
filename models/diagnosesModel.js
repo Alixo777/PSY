@@ -8,6 +8,7 @@ const diagnosesSchema = new mongoose.Schema({
     tCode: String,
     startDate: String,
     conclusionD: String
+    // maor
 });
 
 const DiagnosesModel = mongoose.model("diagnoses", diagnosesSchema);
