@@ -4,7 +4,7 @@ main().catch(err => console.log(err));
 
 async function main() {
 
-    await mongoose.connect('mongodb://admin:admin@mongo:27017/projects');
+    await mongoose.connect('mongodb://127.0.0.1:27017/projects');
     console.log("mongo connect started");
 }
 // mongosh -u admin //pass: admin
