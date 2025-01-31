@@ -11,7 +11,7 @@ let therapistsSchema = new mongoose.Schema({
 });
 
 // Model export
-exports.therapistsSchema = mongoose.model("Therapists", therapistsSchema);
+exports.therapistsSchema = mongoose.model("therapists", therapistsSchema);
 
 // Validation function
 exports.validateUser = (reqBody) => {
