@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSY</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let currentImageIndex = 1;
+        const images = [
+            'Pasted image.png',
+            'Pasted image (2).png',
+            'Pasted image (3).png',
+            'Pasted image (4).png',
+            'Pasted image (5).png',
+            'Pasted image (6).png'
+        ];
+
+        // Function to change the image
+        function changeImage() {
+            currentImageIndex++;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0; // Loop back to the first image
+            }
+            const imgElement = document.getElementById('carousel-img');
+            imgElement.src = images[currentImageIndex];
+        }
+
+        // Change image every 3 seconds (3000 milliseconds)
+        setInterval(changeImage, 3000);
+
+        // Optional: Manual navigation
+        function changeImageManual(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            }
+            const imgElement = document.getElementById('carousel-img');
+            imgElement.src = images[currentImageIndex];
+        }
+
+        // Toggle navigation menu visibility
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our PSY Website</h1>
+        <p>Your Path to Better Mental Health!</p>
+
+        <!-- Burger Icon -->
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav>
+            <div class="nav-links" id="nav-links">
+                <a href="#intro">Introduction</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="intro" id="intro">
+        <h2>Introduction to PSY</h2>
+        <h1>Your Path to Better Mental Health</h1>
+        
+        <p>In today's fast-paced world, taking care of your mental health is just as important as your physical well-being. At <strong>PSY</strong>, we understand that reaching out for help can be daunting, and finding the right therapist is an essential step on your journey to healing and growth.</p>
+        
+        <p><strong>PSY</strong> is an app designed to connect patients with licensed psychology therapists in a safe, confidential, and easy-to-navigate platform. Whether you're struggling with anxiety, depression, stress, or just need someone to talk to, our team of compassionate professionals is here to guide you.</p>
+        
+        <h2>How It Works:</h2>
+        <ul>
+            <li><strong>Find the Right Therapist:</strong> Browse through profiles of licensed therapists with various specialties. Filter by your needs, preferred therapy type, or availability to find the perfect match.</li>
+            <li><strong>Confidential Sessions:</strong> Book live video sessions or schedule text-based consultations with your therapist, all while ensuring your privacy and comfort.</li>
+            <li><strong>Flexible and Convenient:</strong> Get the support you need, when you need it—whether you're at home, at work, or on the go.</li>
+            <li><strong>Expert Guidance:</strong> Our therapists are highly trained professionals who use evidence-based practices to provide the best possible care.</li>
+        </ul>
+
+        <h2>Your Well-Being Matters</h2>
+        <p>We believe that mental health is a vital part of overall wellness. With <strong>PSY</strong>, taking the first step toward improving your mental health has never been easier or more accessible. Let us help you find the right therapist who can support you through life’s challenges, big or small.</p>
+        
+        <p>Together, we can build a better, healthier, and happier you.</p>
+    </section>
+
+    <section class="auth-links">
+        <a href="login.html" class="btn">Login</a>
+        <a href="register.html" class="btn">Register</a>
+    </section>
+
+    <section class="carousel">
+        <h2>So what we have here</h2>
+        <div class="carousel-container">
+            <img src="image1.jpg" alt="Image 1" class="carousel-image" id="carousel-img">
+        </div>
+        <button class="prev" onclick="changeImageManual(-1)">&#10094;</button>
+        <button class="next" onclick="changeImageManual(1)">&#10095;</button>
+    </section>
+
+    <footer>
+        <p>© 2025 Shalex Website. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
