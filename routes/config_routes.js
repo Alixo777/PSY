@@ -4,6 +4,8 @@ const diagnosesR = require('./diagnoses');
 const examsR = require('./exams');
 const meetsR = require('./meets');
 const therapistsR = require('./therapists');
+const patientRoutes = require("./routes/patientRoutes");
+
 
 
 
@@ -15,6 +17,7 @@ exports.routesInit = (app) => {
     app.use("/exams" , examsR)
     app.use("/meets" , meetsR)
     app.use("/therapists" , therapistsR)
+    app.use("/patients", patientRoutes)
 
 
 
