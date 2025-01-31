@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 
 const diagnosesSchema = new mongoose.Schema({
     diagnoseTypeCode: String,
