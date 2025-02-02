@@ -40,8 +40,9 @@ exports.validatePatient = (reqBody) => {
         lastName:Joi.string().min(3).max(99).required() , 
         age:Joi.number().min(18).max(120).required() ,
         address:Joi.string().required(),
-        email:Joi.string().required() , 
-        phoneNumber:Joi.string().required()
+        email:Joi.string().required(), 
+        phoneNumber:Joi.string().required(),
+        password:Joi.string().min(3).max(99).required()
     });
 
     return joiSchema.validate(reqBody)
