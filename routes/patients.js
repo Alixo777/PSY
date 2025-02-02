@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     let data = await PatientsModel.find({});
-    res.json({ msg: "Patient works" });
+    res.json(data);
 });
 
 // 2
