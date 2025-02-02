@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
+const jwt = require("jsonwebtoken");
 
 let therapistsSchema = new mongoose.Schema({
   tCode: String,
@@ -21,6 +22,15 @@ let therapistsSchema = new mongoose.Schema({
 
 // Model export
 exports.therapistsSchema = mongoose.model("therapists", therapistsSchema);
+
+// פונקציה שמייצרת טוקן 
+exports.createToken = (user_id) => {
+  // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
+  // מילה סודית שרק לנו מותר להכיר אותה
+  // ותוקף  
+  let token = jwt.sign({_id:user_id},"MaorSecret",{expiresIn:"60mins"})
+  return token;
+}
 
 // Validation function
 exports.validateUser = (reqBody) => {

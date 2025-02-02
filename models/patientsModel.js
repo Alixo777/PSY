@@ -24,6 +24,15 @@ exports.PatientsModel = mongoose.model("patients" , patientsSchema)
 // TODO:
 // Validation
 
+// פונקציה שמייצרת טוקן 
+exports.createToken = (user_id) => {
+  // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
+  // מילה סודית שרק לנו מותר להכיר אותה
+  // ותוקף  
+  let token = jwt.sign({_id:user_id},"MaorSecret",{expiresIn:"60mins"})
+  return token;
+}
+
 exports.validatePatient = (reqBody) => {
     let joiSchema = Joi.object({
         id:Joi.number().min(100000000).max(999999999).required() ,
