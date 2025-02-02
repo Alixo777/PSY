@@ -1,4 +1,7 @@
 const express = require('express');
+const bcrypt = require("bcrypt");
+
+const { auth } = require("../middlewares/auth");
 const {PatientsModel, validatePatient} = require('../models/patientsModel'); // Or whatever the correct name is
 const router = express.Router();
 
