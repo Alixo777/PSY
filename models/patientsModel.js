@@ -13,7 +13,9 @@ password:String,
 phoneNumber:String,
 date_created:{
     type:Date , default:Date.now()
-  }
+  },
+      // הוספת יוצר הרשומה 
+    user_id:String
 })
 //alexander
 // אנחנו צריכים לייצא את המודל שבנוי משם הקולקשן אליו נרצה לשלוח מידע שיעבור בסכמה ומשם הסכמה עצמה
