@@ -7,7 +7,14 @@ let therapistsSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   img: String,
-  patients: [{ type: ObjectId, ref: 'patients' }] // Array of ObjectId referencing 'patients' collection
+    // בנוסף כל רשומה בברירת מחדל שמייצר אותה
+  // ייתן לה את התאריך של עכשיו
+  date:{
+    type:Date, default:Date.now()
+  },
+  patients: [{ type: ObjectId, ref: 'patients' }], // Array of ObjectId referencing 'patients' collection
+    // הוספת יוצר הרשומה 
+    user_id:String
 });
 
 // Model export

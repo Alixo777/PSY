@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
 
 let patientsSchema = new mongoose.Schema({
 id:Number ,
@@ -8,7 +9,11 @@ lastName:String ,
 age:Number ,
 address:String,
 email:String , 
-phoneNumber:String
+password:String,
+phoneNumber:String,
+date_created:{
+    type:Date , default:Date.now()
+  }
 })
 //alexander
 // אנחנו צריכים לייצא את המודל שבנוי משם הקולקשן אליו נרצה לשלוח מידע שיעבור בסכמה ומשם הסכמה עצמה
@@ -30,3 +35,13 @@ exports.validatePatient = (reqBody) => {
 
     return joiSchema.validate(reqBody)
 }
+
+
+exports.validLogin = (_reqBody) => {
+    let joiSchema = Joi.object({
+      email:Joi.string().min(2).max(99).email().required(),
+      password:Joi.string().min(3).max(99).required()
+    })
+  
+    return joiSchema.validate(_reqBody);
+  }
