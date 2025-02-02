@@ -7,6 +7,8 @@ let therapistsSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   img: String,
+  email:String , 
+  password:String,
     // בנוסף כל רשומה בברירת מחדל שמייצר אותה
   // ייתן לה את התאריך של עכשיו
   date:{
