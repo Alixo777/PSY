@@ -2,13 +2,67 @@ const express = require('express');
 const bcrypt = require("bcrypt");
 
 const { auth } = require("../middlewares/auth");
-const {PatientsModel, validatePatient} = require('../models/patientsModel'); // Or whatever the correct name is
+const {PatientsModel, validatePatient, validLogin, createToken } = require('../models/patientsModel'); // Or whatever the correct name is
+const jwt = require("jsonwebtoken");
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     let data = await PatientsModel.find({});
-    res.json(data);
+    res.json({ msg: "Patient works" });
 });
+
+// 2
+// בראוטר ניתן להעביר בשרשור המון פונקציות שכדי לעבור אחד מהשני
+// אנחנו צריכים להשתמש בפקודת נקסט שנעביר לפונקציית מידל וואר
+router.get("/myEmail", auth, async (req, res) => {
+    try {
+      // req.tokenData._id -> מגיע מפונקציית האוט שנמצאת בשרשור
+      let user = await PatientModel.findOne({ _id:
+         req.tokenData._id }, { email: 1 })
+      // אומר  להציג  רק את האיימיל מתוך המאפיינים
+      res.json(patients);
+      //  res.json({msg:"all good 3333" , data:req.tokenData })
+    }
+    catch (err) {
+      console.log(err)
+      res.status(500).json({ msg: "err", err })
+    }
+  })
+
+  // 3
+// אזור שמחזיר למשתמש את הפרטים שלו לפי הטוקן שהוא שולח
+router.get("/myInfo", async (req, res) => {
+    // בדיקה אם המשתמש בכלל שלח טוקן בהידר
+    // הסיבה שעובדים מול הידר, שהוא גם מאובטח וגם נותן לשלוח עד 600 תווים
+    // וגם עובד בבקשת גט לעומת באדי שלא עובד
+    // req.query, req.params, req.body, req.header
+    let token = req.header("x-api-key");
+    console.log(token);
+    
+    if (!token) {
+      return res.status(401).json({ msg: "You need to send token to this endpoint url" })
+    }
+    try {
+      // מנסה לפענח את הטוקן ויכיל את כל המטען/מידע שבתוכו
+      let tokenData = jwt.verify(token, "MaorSecret");
+      console.log(tokenData);
+  
+  
+      // עושה שאילתא של שליפת המידע מהמסד לפי האיי די שפוענח בטוקן
+      // {password:0} -> יציג את כל המאפיינים חוץ מהסיסמא ואם זה 1
+      // דווקא יציג רק אותו ולא יציג אחרים
+      // 
+      let user = await UserModel.findOne({ _id: tokenData._id },
+         { password: 0 });
+      // אומר לא להציג את הסיסמא מתוך המאפיינים
+      res.json(user);
+    }
+    catch (err) {
+      return res.status(401).json({ msg: "Token not valid or expired" })
+    }
+  
+  })
 
 router.post('/', async (req, res) => {
     let validateBody = validatePatient(req.body)
