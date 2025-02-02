@@ -7,17 +7,14 @@ services:
     - 8080:80
   
   be:
-    # build: 
-    #   context: .
-    #   dockerfile: ./build/backend/Dockerfile
-    image: node:22
+    build: 
+      context: .
+      dockerfile: ./build/backend/Dockerfile
+    # image: node:22
     ports:
       - 3003:3003
-    volumes:
-      - ./:/app
     environment:
       - MONGO_URL=${MONGO_URL}
-    command: tail -f /dev/null
     
 
   mongo:

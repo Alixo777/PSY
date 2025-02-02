@@ -9,7 +9,7 @@ async function main() {
 }
 // mongosh -u admin //pass: admin
 
-//use patient // name of db
+//use projects // name of db
 // db.createUser(
 //     {
 //       user: "admin",
