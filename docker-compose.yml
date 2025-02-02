@@ -12,6 +12,8 @@ services:
       dockerfile: ./build/backend/Dockerfile
     ports:
       - 3003:3003
+    environment:
+      - MONGO_URL=${MONGO_URL}
 
   mongo:
     image: mongo
