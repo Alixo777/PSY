@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get("/myEmail", auth, async (req, res) => {
     try {
       // req.tokenData._id -> מגיע מפונקציית האוט שנמצאת בשרשור
-      let user = await PatientModel.findOne({ _id:
+      let patient = await PatientModel.findOne({ _id:
          req.tokenData._id }, { email: 1 })
       // אומר  להציג  רק את האיימיל מתוך המאפיינים
       res.json(patients);
@@ -53,10 +53,10 @@ router.get("/myInfo", async (req, res) => {
       // {password:0} -> יציג את כל המאפיינים חוץ מהסיסמא ואם זה 1
       // דווקא יציג רק אותו ולא יציג אחרים
       // 
-      let user = await UserModel.findOne({ _id: tokenData._id },
+      let patient = await PatientsModel.findOne({ _id: tokenData._id },
          { password: 0 });
       // אומר לא להציג את הסיסמא מתוך המאפיינים
-      res.json(user);
+      res.json(patient);
     }
     catch (err) {
       return res.status(401).json({ msg: "Token not valid or expired" })
