@@ -45,7 +45,7 @@ router.get("/myInfo", async (req, res) => {
     }
     try {
       // מנסה לפענח את הטוקן ויכיל את כל המטען/מידע שבתוכו
-      let tokenData = jwt.verify(token, "MaorSecret");
+      let tokenData = jwt.verify(token, "PsySecret");
       console.log(tokenData);
   
   
