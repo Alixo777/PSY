@@ -64,14 +64,60 @@ router.get("/myInfo", async (req, res) => {
   
   })
 
-router.post('/', async (req, res) => {
-    let validateBody = validatePatient(req.body)
-    if(validateBody.error){
-        return res.status(400).json(validateBody.error.details)
-    }    
-    let patient = new PatientsModel(req.body);
-    await patient.save();
-    res.json(patient);
+router.post("/register", async (req, res) => {
+  const { email, password, fullName } = req.body;
+
+  // Validate the request body first
+  let validateBody = validatePatient(req.body);  // assuming validatePatient is used for basic validation
+  if (validateBody.error) {
+      return res.status(400).json(validateBody.error.details);
+  }
+
+  try {
+      // Check if the email already exists in the database
+      const existingPatient = await PatientsModel.findOne({ email });
+      if (existingPatient) {
+          return res.status(400).json({ msg: "Email already registered" });
+      }
+
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Create a new patient object
+      const newPatient = new PatientsModel({
+          email,
+          password: hashedPassword,
+          fullName
+      });
+
+      // Save the new patient to the database
+      await newPatient.save();
+
+      // Generate a JWT token for the newly registered patient
+      const token = createToken(newPatient);
+
+      // Send back a success response
+      res.json({ message: "Registration successful", token });
+  } catch (err) {
+      res.status(500).json({ msg: "Error during registration", error: err.message });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+      // Validate login credentials
+      const patient = await validLogin(email, password);
+
+      // Generate a JWT token
+      const token = createToken(patient);
+
+      // Send the token as a response
+      res.json({ message: "Login successful", token });
+  } catch (err) {
+      res.status(401).json({ msg: "Invalid email or password", error: err.message });
+  }
 });
 
 router.delete("/:delId", async (req, res) => {
