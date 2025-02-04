@@ -21,7 +21,7 @@ let therapistsSchema = new mongoose.Schema({
 });
 
 // Model export
-exports.therapistsSchema = mongoose.model("therapists", therapistsSchema);
+exports.therapistsModel = mongoose.model("therapists", therapistsSchema);
 
 // פונקציה שמייצרת טוקן 
 exports.createToken = (user_id) => {
@@ -33,7 +33,7 @@ exports.createToken = (user_id) => {
 }
 
 // Validation function
-exports.validateUser = (reqBody) => {
+exports.validateTherapist = (reqBody) => {
   const joiSchema = Joi.object({
     tCode: Joi.string().required().min(3).max(20), // tCode is required and has length constraints
     firstName: Joi.string().required().min(2).max(50), // firstName is required, length between 2-50
@@ -44,3 +44,12 @@ exports.validateUser = (reqBody) => {
 
   return joiSchema.validate(reqBody); // Validate the reqBody using the schema
 };
+
+exports.validLogin = (_reqBody) => {
+    let joiSchema = Joi.object({
+      email:Joi.string().min(2).max(99).email().required(),
+      password:Joi.string().min(3).max(99).required()
+    })
+  
+    return joiSchema.validate(_reqBody);
+  }
