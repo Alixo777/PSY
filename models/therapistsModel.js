@@ -39,6 +39,8 @@ exports.validateTherapist = (reqBody) => {
     firstName: Joi.string().required().min(2).max(50), // firstName is required, length between 2-50
     lastName: Joi.string().required().min(2).max(50), // lastName is required, length between 2-50
     img: Joi.string().uri().optional(), // img is optional and should be a valid URI if present
+    email:Joi.string().required(), 
+    password:Joi.string().min(3).max(99).required(),
     patients: Joi.array().items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/)).optional(), // Array of ObjectId strings (patient references)
   });
 
