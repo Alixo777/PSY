@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-  const { email, password, fullName, firstName, lastName, age, address, phoneNumber } = req.body;
+  const { email, password, fullName, firstName, lastName, age, address, phoneNumber, id } = req.body;
 
   // Step 1: Basic validation using the existing validatePatient function
   let validateBody = validatePatient(req.body);
@@ -28,13 +28,15 @@ router.post('/register', async (req, res) => {
           return res.status(400).json({ msg: 'Email already registered' });
       }
 
+      // Check if the user provided an id
+      if (!id) {
+          return res.status(400).json({ msg: 'Personal ID is required' });
+      }
+
       // Hash the password before saving the patient
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Generate a unique id (for simplicity, this example uses a Date-based approach, but you can modify it as needed)
-      const id = Date.now(); // Simple unique ID (using timestamp)
-
-      // Create a new patient with the hashed password and additional fields
+      // Create a new patient with the user-provided ID and other fields
       const newPatient = new PatientsModel({
           id,
           firstName,
@@ -44,6 +46,7 @@ router.post('/register', async (req, res) => {
           email,
           password: hashedPassword,
           phoneNumber,
+          fullName
       });
 
       // Save the new patient to the database
