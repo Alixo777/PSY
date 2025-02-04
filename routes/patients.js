@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-  const { email, password, fullName, firstName, lastName, age, address, phoneNumber, id } = req.body;
+  const { email, password, fullName, firstName, lastName, age, address, phoneNumber } = req.body;
 
   // Step 1: Basic validation using the existing validatePatient function
   let validateBody = validatePatient(req.body);
@@ -28,17 +28,11 @@ router.post('/register', async (req, res) => {
           return res.status(400).json({ msg: 'Email already registered' });
       }
 
-      // Check if the user provided an id
-      if (!id) {
-          return res.status(400).json({ msg: 'Personal ID is required' });
-      }
-
       // Hash the password before saving the patient
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Create a new patient with the user-provided ID and other fields
+      // Create a new patient with the provided fields
       const newPatient = new PatientsModel({
-          id,
           firstName,
           lastName,
           age,
@@ -63,23 +57,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-
-router.post("/login", async (req, res) => {
-const { email, password } = req.body;
-
-try {
-    // Validate login credentials
-    const patient = await validLogin(email, password);
-
-    // Generate a JWT token
-    const token = createToken(patient);
-
-    // Send the token as a response
-    res.json({ message: "Login successful", token });
-} catch (err) {
-    res.status(401).json({ msg: "Invalid email or password", error: err.message });
-}
-});
 
 // 2
 // בראוטר ניתן להעביר בשרשור המון פונקציות שכדי לעבור אחד מהשני
