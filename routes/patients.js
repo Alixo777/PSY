@@ -84,20 +84,37 @@ try {
 // 2
 // בראוטר ניתן להעביר בשרשור המון פונקציות שכדי לעבור אחד מהשני
 // אנחנו צריכים להשתמש בפקודת נקסט שנעביר לפונקציית מידל וואר
-router.get("/myEmail", auth, async (req, res) => {
-    try {
-      // req.tokenData._id -> מגיע מפונקציית האוט שנמצאת בשרשור
-      let patient = await PatientModel.findOne({ _id:
-         req.tokenData._id }, { email: 1 })
-      // אומר  להציג  רק את האיימיל מתוך המאפיינים
-      res.json(patients);
-      //  res.json({msg:"all good 3333" , data:req.tokenData })
-    }
-    catch (err) {
-      console.log(err)
-      res.status(500).json({ msg: "err", err })
-    }
-  })
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  // Step 1: Check if the email is provided
+  if (!email || !password) {
+      return res.status(400).json({ msg: "Email and password are required" });
+  }
+
+  try {
+      // Step 2: Find the patient by email
+      const patient = await PatientsModel.findOne({ email });
+      if (!patient) {
+          return res.status(401).json({ msg: "Invalid email or password" });
+      }
+
+      // Step 3: Compare the provided password with the stored hashed password
+      const isPasswordCorrect = await bcrypt.compare(password, patient.password);
+      if (!isPasswordCorrect) {
+          return res.status(401).json({ msg: "Invalid email or password" });
+      }
+
+      // Step 4: Generate a JWT token
+      const token = createToken(patient);
+
+      // Step 5: Send the token as a response
+      res.json({ message: "Login successful", token });
+
+  } catch (err) {
+      res.status(500).json({ msg: "Error during login", error: err.message });
+  }
+});
 
   // 3
 // אזור שמחזיר למשתמש את הפרטים שלו לפי הטוקן שהוא שולח
