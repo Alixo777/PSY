@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
         lastName,
         img,
         email,
-        password: hashedPassword,
+        password: hashedPassword
       });
 
       // Save the new therapist to the database
