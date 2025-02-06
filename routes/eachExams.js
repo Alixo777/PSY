@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // Import models for each exam
-const { DiagnosesExam } = require('../models/diagnosesModel');
-const { PanicExam, validatePanicExam } = require('../models/panicExamModel');
-const { SelfConfidenceExam, validateSelfConfidenceExam } = require('../models/selfConfidenceExamModel');
-const { SocialPanicExam, validateSocialPanicExam } = require('../models/socialPanicExamModel');
-const { StressExam, validateStressExam } = require('../models/stressExamModel');
+const { depressionExamModel, validateDepressionExamModel } = require('../models/exams/depressionExamModel');
+const { PanicExam, validatePanicExam } = require('../models/exams/panicExamModel');
+const { SelfConfidenceExam, validateSelfConfidenceExam } = require('../models/exams/selfConfidenceExamModel');
+const { SocialPanicExam, validateSocialPanicExam } = require('../models/exams/socialPanicExamModel');
+const { StressExam, validateStressExam } = require('../models/exams/stressExamModel');
 
 // 1. Diagnoses Exam Routes
 // Get all Diagnoses exams

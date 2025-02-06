@@ -4,7 +4,7 @@ const diagnosesR = require('./diagnoses');
 const examsR = require('./exams');
 const meetsR = require('./meets');
 const therapistsR = require('./therapists');
-const eachExamsR= require('./routes/eachExams');
+const eachExamsR= require('./eachExams');
 
 
 
