@@ -17,7 +17,7 @@ let therapistsSchema = new mongoose.Schema({
   },
   patients: [{ type: ObjectId, ref: 'patients' }], // Array of ObjectId referencing 'patients' collection
     // הוספת יוצר הרשומה 
-    user_id:String
+    // user_id:String
 });
 
 // Model export

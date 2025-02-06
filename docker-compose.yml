@@ -1,20 +1,20 @@
 services:
-  fe:
-    build: 
-      context: . 
-      dockerfile: ./build/frontend/Dockerfile
-    ports:
-    - 8080:80
+  # fe:
+  #   build: 
+  #     context: . 
+  #     dockerfile: ./build/frontend/Dockerfile
+  #   ports:
+  #   - 8080:80
   
-  be:
-    build: 
-      context: .
-      dockerfile: ./build/backend/Dockerfile
-    # image: node:22
-    ports:
-      - 3003:3003
-    environment:
-      - MONGO_URL=${MONGO_URL}
+  # be:
+  #   build: 
+  #     context: .
+  #     dockerfile: ./build/backend/Dockerfile
+  #   # image: node:22
+  #   ports:
+  #     - 3003:3003
+  #   environment:
+  #     - MONGO_URL=${MONGO_URL}
     
 
   mongo:
@@ -25,6 +25,8 @@ services:
       - MONGO_INITDB_DATABASE=project
     volumes: 
       - data:/data/db
+    ports:
+      - 27017:27017
 
   mongo-express:
     image: mongo-express
