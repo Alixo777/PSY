@@ -2,144 +2,65 @@ const express = require('express');
 const router = express.Router();
 
 // Import models for each exam
-const { depressionExamModel, validateDepressionExamModel } = require('../models/exams/depressionExamModel');
-const { PanicExam, validatePanicExam } = require('../models/exams/panicExamModel');
-const { SelfConfidenceExam, validateSelfConfidenceExam } = require('../models/exams/selfConfidenceExamModel');
-const { SocialPanicExam, validateSocialPanicExam } = require('../models/exams/socialPanicExamModel');
-const { StressExam, validateStressExam } = require('../models/exams/stressExamModel');
+const exams = {
+    depression: {
+        model: require('../models/exams/depressionExamModel').DepressionExam,
+        validate: require('../models/exams/depressionExamModel').validateDepressionExam
+    },
+    panic: {
+        model: require('../models/exams/panicExamModel').Panic,
+        validate: require('../models/exams/panicExamModel').validatePanic
+    },
+    selfConfidence: {
+        model: require('../models/exams/selfConfidenceExamModel').SelfConfidenceExam,
+        validate: require('../models/exams/selfConfidenceExamModel').validateSelfConfidenceExam
+    },
+    socialPanic: {
+        model: require('../models/exams/socialPanicExamModel').SocialPanicExam,
+        validate: require('../models/exams/socialPanicExamModel').validateSocialPanicExam
+    },
+    stress: {
+        model: require('../models/exams/stressExamModel').StressExam,
+        validate: require('../models/exams/stressExamModel').validateStressExam
+    }
+};
 
-// 1. Diagnoses Exam Routes
-// Get all Diagnoses exams
-router.get('/diagnoses', async (req, res) => {
+// router.get('/depression', async (req, res) => {
+
+// })
+
+// Get all exams of a specific type
+router.get('/:examType', async (req, res) => {
+    const { examType } = req.params;
+    if (!exams[examType]) {
+        return res.status(400).json({ message: "Invalid exam type." });
+    }
     try {
-        let data = await DiagnosesExam.find({});
+        let data = await exams[examType].model.find({});
         res.json(data);
     } catch (error) {
-        res.status(500).json({ message: "Error retrieving diagnoses data", error: error.message });
+        res.status(500).json({ message: "Error retrieving data", error: error.message });
     }
 });
 
-// Create a new Diagnoses exam
-router.post('/diagnoses', async (req, res) => {
-    const { error } = validatePanicExam(req.body);
+// Create a new exam of a specific type
+router.post('/:examType', async (req, res) => {
+    const { examType } = req.params;
+    if (!exams[examType]) {
+        return res.status(400).json({ message: "Invalid exam type." });
+    }
+    
+    const { error } = exams[examType].validate(req.body);
     if (error) {
         return res.status(400).json(error.details);
     }
-
-    const exam = new DiagnosesExam(req.body);
+    
     try {
+        const exam = new exams[examType].model(req.body);
         await exam.save();
         res.json(exam);
     } catch (error) {
-        res.status(500).json({ message: "Error saving diagnoses exam", error: error.message });
-    }
-});
-
-// 2. Panic Exam Routes
-// Get all Panic exams
-router.get('/panic', async (req, res) => {
-    try {
-        let data = await PanicExam.find({});
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ message: "Error retrieving panic exam data", error: error.message });
-    }
-});
-
-// Create a new Panic exam
-router.post('/panic', async (req, res) => {
-    const { error } = validatePanicExam(req.body);
-    if (error) {
-        return res.status(400).json(error.details);
-    }
-
-    const exam = new PanicExam(req.body);
-    try {
-        await exam.save();
-        res.json(exam);
-    } catch (error) {
-        res.status(500).json({ message: "Error saving panic exam", error: error.message });
-    }
-});
-
-// 3. Self Confidence Exam Routes
-// Get all Self Confidence exams
-router.get('/self-confidence', async (req, res) => {
-    try {
-        let data = await SelfConfidenceExam.find({});
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ message: "Error retrieving self-confidence exam data", error: error.message });
-    }
-});
-
-// Create a new Self Confidence exam
-router.post('/self-confidence', async (req, res) => {
-    const { error } = validateSelfConfidenceExam(req.body);
-    if (error) {
-        return res.status(400).json(error.details);
-    }
-
-    const exam = new SelfConfidenceExam(req.body);
-    try {
-        await exam.save();
-        res.json(exam);
-    } catch (error) {
-        res.status(500).json({ message: "Error saving self-confidence exam", error: error.message });
-    }
-});
-
-// 4. Social Panic Exam Routes
-// Get all Social Panic exams
-router.get('/social-panic', async (req, res) => {
-    try {
-        let data = await SocialPanicExam.find({});
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ message: "Error retrieving social panic exam data", error: error.message });
-    }
-});
-
-// Create a new Social Panic exam
-router.post('/social-panic', async (req, res) => {
-    const { error } = validateSocialPanicExam(req.body);
-    if (error) {
-        return res.status(400).json(error.details);
-    }
-
-    const exam = new SocialPanicExam(req.body);
-    try {
-        await exam.save();
-        res.json(exam);
-    } catch (error) {
-        res.status(500).json({ message: "Error saving social panic exam", error: error.message });
-    }
-});
-
-// 5. Stress Exam Routes
-// Get all Stress exams
-router.get('/stress', async (req, res) => {
-    try {
-        let data = await StressExam.find({});
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ message: "Error retrieving stress exam data", error: error.message });
-    }
-});
-
-// Create a new Stress exam
-router.post('/stress', async (req, res) => {
-    const { error } = validateStressExam(req.body);
-    if (error) {
-        return res.status(400).json(error.details);
-    }
-
-    const exam = new StressExam(req.body);
-    try {
-        await exam.save();
-        res.json(exam);
-    } catch (error) {
-        res.status(500).json({ message: "Error saving stress exam", error: error.message });
+        res.status(500).json({ message: "Error saving exam", error: error.message });
     }
 });
 

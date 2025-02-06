@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const {routesInit} =  require("./routes/config_routes")
+require('dotenv').config()
 require("./db/mongoConnect")
 
 const app = express();
