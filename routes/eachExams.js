@@ -8,8 +8,8 @@ const exams = {
         validate: require('../models/exams/depressionExamModel').validateDepressionExam
     },
     panic: {
-        model: require('../models/exams/panicExamModel').Panic,
-        validate: require('../models/exams/panicExamModel').validatePanic
+        model: require('../models/exams/panicExamModel').PanicExam,
+        validate: require('../models/exams/panicExamModel').validatePanicExam
     },
     selfConfidence: {
         model: require('../models/exams/selfConfidenceExamModel').SelfConfidenceExam,

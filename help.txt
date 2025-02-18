@@ -52,3 +52,126 @@ PS C:\Users\shale\Documents\psy> git commit -m "start git"
 קוד נאמבק
 מטופלים: [{ type: ObjectId, ref: 'מטופל' }]
 }
+
+history of commands termimal:
+
+    1  git init
+    2  apt-get install git
+    3  yes
+    4  apt-get install git
+    5  y
+    6  no
+    7  apt-get install git
+    8  no
+    9  git clone https://github.com/Alixo777/PSY.git
+   10  sudo apt install git
+   11  SH1234!
+   12  sudo apt install git
+   13  git clone https://github.com/Alixo777/PSY.git
+   14  npm run start
+   15  npm i --y
+   16  npm install
+   17  sudo apt install nodejs
+   18  npm start
+   19  sudo apt install npm
+   20  npm start
+   21  npm i express
+   22  npm start
+   23  docker compose up -d
+   24  udo apt  install docker.io 
+   25  docker compose up -d
+   26  docker --version
+   27  docker compose 
+   28  # Add Docker's official GPG key:
+   29  sudo apt-get update
+   30  sudo apt-get install ca-certificates curl
+   31  sudo install -m 0755 -d /etc/apt/keyrings
+   32  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+   33  sudo chmod a+r /etc/apt/keyrings/docker.asc
+   34  # Add the repository to Apt sources:
+   35  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   36    $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   37  sudo apt-get update
+   38  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   39  sudo usermod -aG docker $USER
+   40  docker compose 
+   41  docker compose up -d 
+   42  docker ps
+   43  docker logs -f psy-be-1 
+   44  git push
+   45  git pull
+   46  git config --global user.email "shalev56@gmail.com"
+   47  git config --global user.name "shalev"
+   48  git push
+   49  docker compose up -d --build
+   50  docker logs -f psy-be-1 
+   51  docker compose up -d --build
+   52  docker logs -f psy-be-1 
+   53  docker compose up -d --build
+   54  docker logs -f psy-be-1 
+   55  docker compose up -d --build
+   56  docker exec -it psy-be-1 bash 
+   57  docker exec -it psy-be-1 sh 
+   58  docker compose up -d --build
+   59  docker exec -it psy-be-1 sh 
+   60  docker exec -it psy-mongo-1 bash
+   61  docker compose up -d --build
+   62  docker exec -it psy-be-1 sh 
+   63  docker compose up -d --build
+   64  docker exec -it psy-be-1 sh 
+   65  docker compose up -d --build
+   66  docker exec -it psy-be-1 sh 
+   67  docker logs -f psy-be-1 
+   68  docker compose up -d --build
+   69  docker ps
+   70  docker compose up -d --build
+   71  docker exec -it psy-be-1 sh 
+   72  docker exec -it psy-mongo-1 sh 
+   73  docker exec -it psy-be-1 sh 
+   74  docker compose up -d --build
+   75  docker exec -it psy-be-1 sh 
+   76  git push -u origin main
+   77  git reset HEAD
+   78  git push -u origin main
+   79  npm start
+   80  git push -u origin main
+   81  git pull
+   82  git config pull.rebase false
+   83  git pull
+   84  npm start
+   85  git pull
+   86  npm run dev
+   87  npm create vite@latest
+   88  cd vite-project
+   89  npm install
+   90  npm run dev
+   91  code .
+   92  cd public
+   93  npm run dev
+   94  npm install
+   95  npm run dev
+   96  git pull
+   97  npm run dev
+   98  npm start
+   99  cd public
+  100  npm run dev
+  101  cd ..
+  102  npm start
+  103  docker ps
+  104  docker compose up -d
+  105  docker exec -it mongo bash
+  106  docker exec -it 5b bash
+  107  npm start
+  108  docker ps
+  109  npm start
+  110  docker compose up -d
+  111  docker compose up -d --build
+  112  cat /etc/host
+  113  cat /etc/hosts
+  114  npm start
+  115  docker ps
+  116  docker compose up -d 
+  117  docker stop be
+  118  docker ps
+  119  npm start
+  120  git push -u origin main

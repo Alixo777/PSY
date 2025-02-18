@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const { Schema } = mongoose;
 
-const panicSchema = new Schema({
+const panicExamSchema = new Schema({
   dfeekutLev: { type: Boolean, required: true }, // דפיקות לב
   haza: { type: Boolean, required: true }, // הזעה
   kotzerNeshima: { type: Boolean, required: true }, // קוצר נשימה
@@ -23,12 +23,12 @@ const panicSchema = new Schema({
   shinuiBehitnagut: { type: Boolean, required: false }, // שינית את התנהגותך בשל ההתקף
 });
 
-const Panic = mongoose.model('Panic', panicSchema);
+const PanicExam = mongoose.model('PanicExam', panicExamSchema);
 
-exports.Panic = Panic;
+exports.PanicExam = PanicExam;
 
 // Joi validation schema
-exports.validatePanic = (reqBody) => {
+exports.validatePanicExam = (reqBody) => {
   const joiSchema = Joi.object({
     dfeekutLev: Joi.boolean().required(),
     haza: Joi.boolean().required(),
@@ -54,7 +54,7 @@ exports.validatePanic = (reqBody) => {
 };
 
 // Function to calculate the number of positive responses and check additional questions if needed
-exports.evaluatePanic = (reqBody) => {
+exports.evaluatePanicExam = (reqBody) => {
   // Count the number of true answers
   const positiveAnswers = Object.values(reqBody).filter((value) => value === true).length;
 
