@@ -4,9 +4,13 @@ main().catch(err => console.log(err));
 
 async function main() {
 
-    await mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ls0l2.mongodb.net/`);
+    console.log(process.env.MONGO_URL)
+
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("mongo connect started");
 }
+
+// docker exec -it mongo bash
 // mongosh -u admin //pass: admin
 
 //use projects // name of db

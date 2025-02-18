@@ -5,20 +5,22 @@ const examsR = require('./exams');
 const meetsR = require('./meets');
 const therapistsR = require('./therapists');
 const eachExamsR= require('./eachExams');
+const express = require('express');
+const routers = express.Router();
 
 
 
 
-exports.routesInit = (app) => {
-    app.use("/" , indexR)
-    app.use("/patients" , patientsR)
-    app.use("/diagnoses" , diagnosesR)
-    app.use("/exams" , examsR)
-    app.use("/meets" , meetsR)
-    app.use("/therapists" , therapistsR)
-    app.use("/eachExams" , eachExamsR)
+
+routers.use("/" , indexR)
+routers.use("/patients" , patientsR)
+routers.use("/diagnoses" , diagnosesR)
+routers.use("/exams" , examsR)
+routers.use("/meets" , meetsR)
+routers.use("/therapists" , therapistsR)
+routers.use("/eachExams" , eachExamsR)
 
 
 
 
-}
+module.exports = routers

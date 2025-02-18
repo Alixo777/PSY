@@ -6,18 +6,20 @@ services:
   #   ports:
   #   - 8080:80
   
-  # be:
-  #   build: 
-  #     context: .
-  #     dockerfile: ./build/backend/Dockerfile
-  #   # image: node:22
-  #   ports:
-  #     - 3003:3003
-  #   environment:
-  #     - MONGO_URL=${MONGO_URL}
+  be:
+    container_name: be
+    build: 
+      context: .
+      dockerfile: ./build/backend/Dockerfile
+    # image: node:22
+    ports:
+      - 3003:3003
+    environment:
+      - MONGO_URL=${MONGO_URL}
     
 
   mongo:
+    container_name: mongo
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}

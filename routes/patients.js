@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     let data = await PatientsModel.find({});
     res.json(data);
 });
@@ -95,7 +95,7 @@ router.post("/login", async (req, res) => {
 
   // 3
 // אזור שמחזיר למשתמש את הפרטים שלו לפי הטוקן שהוא שולח
-router.get("/myInfo", async (req, res) => {
+router.get("/myInfo", auth, async (req, res) => {
     // בדיקה אם המשתמש בכלל שלח טוקן בהידר
     // הסיבה שעובדים מול הידר, שהוא גם מאובטח וגם נותן לשלוח עד 600 תווים
     // וגם עובד בבקשת גט לעומת באדי שלא עובד

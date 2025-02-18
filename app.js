@@ -1,7 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
-const {routesInit} =  require("./routes/config_routes")
+const routers =  require("./routes/config_routes")
 require('dotenv').config()
 require("./db/mongoConnect")
 
@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, "public")));
 
-routesInit(app);
+app.use('/api', routers)
 
 const server = http.createServer(app);
 

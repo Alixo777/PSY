@@ -29,7 +29,7 @@ exports.createToken = (user_id) => {
   // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
   // מילה סודית שרק לנו מותר להכיר אותה
   // ותוקף  
-  let token = jwt.sign({_id:user_id},"PsySecret",{expiresIn:"60mins"})
+  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"})
   return token;
 }
 
