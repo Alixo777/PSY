@@ -15,21 +15,22 @@ date_created:{
     type:Date , default:Date.now()
   },
       // הוספת יוצר הרשומה 
-    user_id:String
+    user_id:String, 
+    
+  role:{
+      type:String, default:"patient"
+    },
 })
-//alexander
-// אנחנו צריכים לייצא את המודל שבנוי משם הקולקשן אליו נרצה לשלוח מידע שיעבור בסכמה ומשם הסכמה עצמה
-exports.PatientsModel = mongoose.model("patients" , patientsSchema)
-// שם המודל חייב להתחיל עם אות גדולה + שם הקולקשן חייב להסתיים עם אס 
-// TODO:
-// Validation
+
+exports.patientsModel = mongoose.model("patients", patientsSchema);
+
 
 // פונקציה שמייצרת טוקן 
 exports.createToken = (user_id) => {
   // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
   // מילה סודית שרק לנו מותר להכיר אותה
   // ותוקף  
-  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"})
+  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"} , {_role:user.role})
   return token;
 }
 

@@ -26,8 +26,14 @@ formLogin.addEventListener("submit", (e) => {
         .then((response) => response.json())
         .then((result) => {
             localStorage.setItem("token", result.token)
-            console.log(result)
-        })
+            // localStorage.setItem("role",rool hide in yhe token needs to verify the token )            // localStorage.setItem("role", result.token._role)
+
+            // if(!token)
+              window.open("home.html"); 
+                })
         .catch((error) => console.error(error));
     
 })
+
+
+

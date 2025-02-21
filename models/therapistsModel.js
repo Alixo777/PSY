@@ -10,14 +10,17 @@ let therapistsSchema = new mongoose.Schema({
   img: String,
   email:String , 
   password:String,
-    // בנוסף כל רשומה בברירת מחדל שמייצר אותה
+  // בנוסף כל רשומה בברירת מחדל שמייצר אותה
   // ייתן לה את התאריך של עכשיו
   date:{
     type:Date, default:Date.now()
   },
   patients: [{ type: ObjectId, ref: 'patients' }], // Array of ObjectId referencing 'patients' collection
-    // הוספת יוצר הרשומה 
-    // user_id:String
+  // הוספת יוצר הרשומה 
+  // user_id:String
+  role:{
+    type:String, default:"therapist"
+  }, 
 });
 
 // Model export
@@ -28,10 +31,10 @@ exports.createToken = (user_id) => {
   // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
   // מילה סודית שרק לנו מותר להכיר אותה
   // ותוקף  
-  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"})
+  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"},{_role:user.role})
   return token;
 }
-
+user_id
 // Validation function
 exports.validateTherapist = (reqBody) => {
   const joiSchema = Joi.object({
