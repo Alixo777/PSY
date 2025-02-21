@@ -108,7 +108,7 @@ router.get("/myInfo", auth, async (req, res) => {
     }
     try {
       // מנסה לפענח את הטוקן ויכיל את כל המטען/מידע שבתוכו
-      let tokenData = jwt.verify(token, "PsySecret");
+      let tokenData = jwt.verify(token, JWT_SECRET_KEY);
       console.log(tokenData);
   
   

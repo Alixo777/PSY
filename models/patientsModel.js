@@ -19,7 +19,7 @@ date_created:{
     
   role:{
       type:String, default:"patient"
-    },
+    }
 })
 
 exports.patientsModel = mongoose.model("patients", patientsSchema);

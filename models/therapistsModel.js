@@ -20,7 +20,7 @@ let therapistsSchema = new mongoose.Schema({
   // user_id:String
   role:{
     type:String, default:"therapist"
-  }, 
+  }
 });
 
 // Model export
