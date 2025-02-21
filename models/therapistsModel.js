@@ -34,7 +34,7 @@ exports.createToken = (user_id) => {
   let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"},{_role:user.role})
   return token;
 }
-user_id
+
 // Validation function
 exports.validateTherapist = (reqBody) => {
   const joiSchema = Joi.object({
