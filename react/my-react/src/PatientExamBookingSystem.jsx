@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import './App.css';
+import './exams.css';
+
 
 
 const PatientExamBookingSystem = () => {
@@ -13,18 +15,18 @@ const PatientExamBookingSystem = () => {
 
   // Sample data (would come from API in real application)
   const exams = [
-    { id: 1, name: 'Panic'  },
-    { id: 2, name: 'Deppression'  },
-    { id: 3, name: 'Self Confidence' },
-    { id: 4, name: 'Social Panic' },
-    { id: 5, name: 'Stress' },
+    { id: 1, name: 'Panic' , imageSrc: "images/a_girl_panicking.jpeg", alt: "Panic flag", link: "Panic.html"},
+    { id: 2, name: 'Deppression' , imageSrc: "images/depression.jpeg",alt: "Depression flag",link: "depression.html"},
+    { id: 3, name: 'Self Confidence' , imageSrc: "images/self_confidence.jpeg",alt: "Self Confidence flag",link: "SelfConfidence.html"},
+    { id: 4, name: 'Social Panic' ,imageSrc: "images/panic_attack.jpeg",alt: "Social Panic flag",link: "SocialPanic.html" },
+    { id: 5, name: 'Stress' , imageSrc: "images/stress_situation.jpeg",alt: "Stress flag",link: "Stress.html"},
 
   ];
 
   const therapists = [
     { id: 1, name: 'Dr. Sarah Johnson', specialty: 'General Medicine', rating: 4.9 },
     { id: 2, name: 'Dr. Michael Chen', specialty: 'Radiology', rating: 4.8 },
-    { id: 3, name: 'Dr. Emily Rodriguez', specialty: 'Cardiology', rating: 4.7 },
+    { id: 3, name: 'Dr. Zigmond Freud', specialty: 'Psycology', rating: 5 },
   ];
 
   // Generate dates for the next 14 days
@@ -100,18 +102,27 @@ const PatientExamBookingSystem = () => {
       {step === 1 && (
         <div>
           <h2 className="text-2xl font-bold mb-4">Select an Exam</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {exams.map((exam) => (
-              <div
-                key={exam.id}
-                className={`p-4 border rounded-lg cursor-pointer hover:border-blue-500 transition ${selectedExam?.id === exam.id ? 'border-blue-500 bg-blue-50' : ''}`}
-                onClick={() => setSelectedExam(exam)}
-              >
-                <h3 className="font-semibold text-lg">{exam.name}</h3>
-                <div className="text-gray-600">Price: {exam.price}</div>
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-3 gap-4">
+  {exams.map((exam, index) => (
+    <div
+      key={exam.id}
+      className={`p-4 border rounded-lg cursor-pointer hover:border-blue-500 transition ${selectedExam?.id === exam.id ? 'border-blue-500 bg-blue-50' : ''}`}
+      onClick={() => setSelectedExam(exam)}
+    >
+      <h3 className="font-semibold text-lg">{exam.name}</h3>
+      <h2>
+        <img
+          id="id_img"
+          src={exam.imageSrc}
+          height="180px"
+          width="240px"
+          alt={exam.alt}
+        />
+      </h2>
+    </div>
+  ))}
+</div>
+
           <div className="mt-6 flex justify-end">
             <button
               className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:bg-gray-300"
@@ -223,7 +234,6 @@ const PatientExamBookingSystem = () => {
             <div className="mb-4">
               <h3 className="text-gray-500 text-sm">Exam</h3>
               <p className="font-medium">{selectedExam.name}</p>
-              <p className="text-sm text-gray-600">Duration: {selectedExam.duration} • Price: {selectedExam.price}</p>
             </div>
 
             <div className="mb-4">
