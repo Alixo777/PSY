@@ -11,7 +11,7 @@ const PatientExamBookingSystem = () => {
   
   // Sample data (would come from API in real application)
   const exams = [
-    { id: 1, name: 'Physical Examination', duration: '60 min', price: '$120' },
+    { id: 1, name: 'Physical Examination', Image: '/public/images', price: '$120' },
     { id: 2, name: 'X-Ray Examination', duration: '45 min', price: '$90' },
     { id: 3, name: 'Ultrasound Examination', duration: '90 min', price: '$180' },
     { id: 4, name: 'Blood Test', duration: '30 min', price: '$75' }
