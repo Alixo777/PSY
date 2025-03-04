@@ -1,0 +1,50 @@
+.center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  h1{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  article {
+    height: 100%;
+    background-color: #444;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  article:hover {
+    transform: scale(1.03);
+  }
+  
+  article h2 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  article a {
+    display: block;
+    text-align: center;
+  }
+  
+  #id_img {
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  /* Add this if you want to show that exams are free */
+  .free-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }

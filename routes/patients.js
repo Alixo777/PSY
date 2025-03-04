@@ -23,10 +23,10 @@ router.post('/register', async (req, res) => {
 
   try {
       // Step 2: Check if the patient already exists by email
-      const existingPatient = await PatientsModel.findOne({ email });
-      if (existingPatient) {
-          return res.status(400).json({ msg: 'Email already registered' });
-      }
+    //   const existingPatient = await PatientsModel.findOne({ email });
+    //   if (existingPatient) {
+    //       return res.status(400).json({ msg: 'Email already registered' });
+    //   }
 
       // Hash the password before saving the patient
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -45,9 +45,6 @@ router.post('/register', async (req, res) => {
 
       // Save the new patient to the database
       await newPatient.save();
-
-      // Generate a JWT token for the newly registered patient
-      const token = createToken(newPatient);
 
       // Send back success response with the token
       res.json({ message: 'Registration successful', token });
