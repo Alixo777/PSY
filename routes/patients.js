@@ -2,13 +2,13 @@ const express = require('express');
 const bcrypt = require("bcrypt");
 
 const { auth } = require("../middlewares/auth");
-const {PatientsModel, validatePatient, validLogin, createToken } = require('../models/patientsModel'); // Or whatever the correct name is
+const {patientsModel, validatePatient, validLogin, createToken } = require('../models/patientsModel'); // Or whatever the correct name is
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
-    let data = await PatientsModel.find({});
+    let data = await patientsModel.find({});
     res.json(data);
 });
 
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
 
   try {
       // Step 2: Check if the patient already exists by email
-    //   const existingPatient = await PatientsModel.findOne({ email });
+    //   const existingPatient = await patientsModel.findOne({ email });
     //   if (existingPatient) {
     //       return res.status(400).json({ msg: 'Email already registered' });
     //   }
@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create a new patient with the provided fields
-      const newPatient = new PatientsModel({
+      const newPatient = new patientsModel({
           firstName,
           lastName,
           age,
@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
       await newPatient.save();
 
       // Send back success response with the token
-      res.json({ message: 'Registration successful', token });
+      res.json({ message: 'Registration successful' });
 
   } catch (err) {
       res.status(500).json({ msg: 'Error during registration', error: err.message });
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
 
   try {
       // Step 2: Find the patient by email
-      const patient = await PatientsModel.findOne({ email });
+      const patient = await patientsModel.findOne({ email });
       if (!patient) {
           return res.status(401).json({ msg: "Invalid email or password" });
       }
@@ -113,7 +113,7 @@ router.get("/myInfo", auth, async (req, res) => {
       // {password:0} -> יציג את כל המאפיינים חוץ מהסיסמא ואם זה 1
       // דווקא יציג רק אותו ולא יציג אחרים
       // 
-      let patient = await PatientsModel.findOne({ _id: tokenData._id },
+      let patient = await patientsModel.findOne({ _id: tokenData._id },
          { password: 0 });
       // אומר לא להציג את הסיסמא מתוך המאפיינים
       res.json(patient);
@@ -126,7 +126,7 @@ router.get("/myInfo", auth, async (req, res) => {
 
 router.delete("/:delId", async (req, res) => {
     let newDelId = req.params.delId;
-    let data = await PatientsModel.deleteOne({ _id: newDelId });
+    let data = await patientsModel.deleteOne({ _id: newDelId });
     res.json(data);
 });
 
@@ -141,7 +141,7 @@ router.put("/:id", async (req, res) => {
 
     try {
         // Find the patient by their ID and update their data
-        let updatedPatient = await PatientsModel.findByIdAndUpdate(
+        let updatedPatient = await patientsModel.findByIdAndUpdate(
             patientId,
             req.body,
             { new: true } // this option ensures the updated patient is returned

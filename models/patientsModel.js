@@ -26,11 +26,11 @@ exports.patientsModel = mongoose.model("patients", patientsSchema);
 
 
 // פונקציה שמייצרת טוקן 
-exports.createToken = (user_id) => {
+exports.createToken = (user) => {
   // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
   // מילה סודית שרק לנו מותר להכיר אותה
   // ותוקף  
-  let token = jwt.sign({_id:user_id}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"} , {_role:user.role})
+  let token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET_KEY,{expiresIn:"60mins"} , {_role: user.role})
   return token;
 }
 
