@@ -14,3 +14,9 @@ console.log(token);
 // (if role === patients){
 //     window.open = homepatient.html
 // }
+
+let first = localStorage.getItem(["fchar"]);
+
+let profileSpan = document.querySelector('.profile span');
+
+profileSpan.textContent = first.toUpperCase();;  

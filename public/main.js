@@ -6,6 +6,9 @@ formLogin.addEventListener("submit", (e) => {
   const email = document.querySelector('[type=email]').value;
   const password = document.querySelector('[type=password]').value;
   console.log(email, password);
+  fchar = email[0];
+  console.log(fchar);
+  localStorage.setItem("fchar", fchar);
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
