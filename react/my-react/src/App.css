@@ -7,13 +7,15 @@
   
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9;
+    background-color: #f2f2f2;
     color: #333;
   }
   
   /* Container */
   .max-w-4xl {
     max-width: 1100px;
+    background-color: #6c757d;
+    color: #f2f2f2;
   }
   
   .mx-auto {
@@ -26,7 +28,7 @@
   }
   
   .bg-white {
-    background-color: #ffffff;
+    background-color: #6c757d;
   }
   
   .rounded-lg {
@@ -98,17 +100,7 @@
   }
   
   /* Step Containers */
-  h2, h3 {
-    font-family: 'Arial', sans-serif;
-  }
   
-  h2 {
-    color: #333;
-  }
-  
-  h3 {
-    color: #4a5568;
-  }
   
   .space-y-4 > * + * {
     margin-top: 1rem;
@@ -155,7 +147,7 @@
   }
   
   .hover\:bg-blue-50:hover {
-    background-color: #9affdd;
+    background-color: #4352da;
   }
   
   .p-4 {
@@ -183,7 +175,7 @@
   }
   
   .bg-blue-50 {
-    background-color: #9affdd;
+    background-color: #4352da;
   }
   
   .text-lg {
@@ -192,10 +184,6 @@
   
   .text-xs {
     font-size: 0.75rem;
-  }
-  
-  .text-gray-600 {
-    color: #718096;
   }
   
   .text-gray-500 {
@@ -265,7 +253,7 @@
   
   /* Step 4 Confirmation */
   .bg-gray-50 {
-    background-color: #ffebbd;
+    background-color: #8b1919d8;
   }
   
   .mt-6 {

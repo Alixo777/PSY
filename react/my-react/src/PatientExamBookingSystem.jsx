@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar } from 'lucide-react';
+import './bootstrap.min.css';        
 import './App.css';
 import './exams.css';
 
@@ -71,7 +72,7 @@ const PatientExamBookingSystem = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg center row">
       {/* Progress indicator */}
       <div className="mb-8">
         <h1>welcome patients to home page</h1>
