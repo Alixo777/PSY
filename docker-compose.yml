@@ -6,17 +6,31 @@ services:
   #   ports:
   #   - 8080:80
   
+  be:
+    container_name: be
+    build: 
+      context: .
+      dockerfile: ./build/backend/Dockerfile
+    # image: node:22
+    ports:
+      - 9229:9229
+      - 3003:3003
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+
+    
+
   # be:
   #   container_name: be
-  #   build: 
-  #     context: .
-  #     dockerfile: ./build/backend/Dockerfile
-  #   # image: node:22
+  #   image: node:23-alpine
   #   ports:
   #     - 3003:3003
   #   environment:
   #     - MONGO_URL=${MONGO_URL}
-    
+  #   volumes:
+  #     - ./:/app
+  #   command: tail -f /dev/null
 
   mongo:
     container_name: mongo

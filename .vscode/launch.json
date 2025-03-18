@@ -14,6 +14,17 @@
             ],
             "program": "${workspaceFolder}/app.js",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "port": 9229,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app"
         }
+
     ]
 }

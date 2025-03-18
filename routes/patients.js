@@ -60,6 +60,8 @@ router.post('/register', async (req, res) => {
 // אנחנו צריכים להשתמש בפקודת נקסט שנעביר לפונקציית מידל וואר
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  console.log("api Patient/login");
+  
 
   // Step 1: Check if the email is provided
   if (!email || !password) {
@@ -73,14 +75,18 @@ router.post("/login", async (req, res) => {
           return res.status(401).json({ msg: "Invalid email or password" });
       }
 
+      console.log("end step 2")
+
       // Step 3: Compare the provided password with the stored hashed password
-      const isPasswordCorrect = await bcrypt.compare(password, patient.password);
+      const isPasswordCorrect = bcrypt.compare(password, patient.password);
       if (!isPasswordCorrect) {
           return res.status(401).json({ msg: "Invalid email or password" });
       }
+      console.log("end step 3")
 
       // Step 4: Generate a JWT token
       const token = createToken(patient);
+      console.log("end step 4")
 
       // Step 5: Send the token as a response
       res.json({ message: "Login successful", token });

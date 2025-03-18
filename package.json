@@ -2,7 +2,7 @@
   "name": "node_24",
   "version": "1.0.0",
   "scripts": {
-    "start": "node app"
+    "start": "node --inspect=0.0.0.0:9229 app"
   },
   "keywords": [],
   "author": "",
