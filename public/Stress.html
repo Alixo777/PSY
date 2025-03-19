@@ -131,6 +131,7 @@
         .then(response => response.json())
         .then(result => {
           alert(result.message);
+          window.location.href = 'chooseTherapist.html'; // Redirect to chooseTherapist.html
         })
         .catch(error => {
           console.error('Error:', error);
