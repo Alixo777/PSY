@@ -142,7 +142,7 @@
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('/api/depressionExam', {
+        fetch('/api/eachExams/depression', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

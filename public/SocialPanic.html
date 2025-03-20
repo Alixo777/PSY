@@ -82,7 +82,7 @@
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('/api/socialPanicExam', {
+        fetch('/api/eachExams/socialPanic', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
