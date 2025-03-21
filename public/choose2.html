@@ -111,11 +111,11 @@
       let selectedTime = null;
 
       const exams = [
-    { id: 1, name: 'Panic' , imageSrc: "images/a_girl_panicking.jpeg", alt: "Panic flag", link: "Panic.html"},
-    { id: 2, name: 'Deppression' , imageSrc: "images/depression.jpeg",alt: "Depression flag",link: "depression.html"},
-    { id: 3, name: 'Self Confidence' , imageSrc: "images/self_confidence.jpeg",alt: "Self Confidence flag",link: "SelfConfidence.html"},
-    { id: 4, name: 'Social Panic' ,imageSrc: "images/panic_attack.jpeg",alt: "Social Panic flag",link: "SocialPanic.html" },
-    { id: 5, name: 'Stress' , imageSrc: "images/stress_situation.jpeg",alt: "Stress flag",link: "Stress.html"},
+    { id: 1, name: 'Panic' , imageSrc: "public/images/a_girl_panicking.jpeg", alt: "Panic flag", link: "Panic.html"},
+    { id: 2, name: 'Deppression' , imageSrc: "public/images/depression.jpeg",alt: "Depression flag",link: "depression.html"},
+    { id: 3, name: 'Self Confidence' , imageSrc: "public/images/self_confidence.jpeg",alt: "Self Confidence flag",link: "SelfConfidence.html"},
+    { id: 4, name: 'Social Panic' ,imageSrc: "public/images/panic_attack.jpeg",alt: "Social Panic flag",link: "SocialPanic.html" },
+    { id: 5, name: 'Stress' , imageSrc: "public/images/stress_situation.jpeg",alt: "Stress flag",link: "Stress.html"},
 
   ];
 
@@ -164,8 +164,8 @@
           examDiv.className = `p-4 border rounded-lg cursor-pointer hover:border-blue-500 transition ${selectedExam?.id === exam.id ? 'border-blue-500 bg-blue-50' : ''}`;
           examDiv.innerHTML = `
             <h3 class="font-semibold text-lg">${exam.name}</h3>
-            <div class="mt-2 text-gray-600">Duration: ${exam.duration}</div>
-            <div class="text-gray-600">Price: ${exam.price}</div>
+            <div class="mt-2 text-gray-600"><img src=${exam.imageSrc} height="50px" width="200px"></div>
+            
           `;
           examDiv.addEventListener('click', () => {
             selectedExam = exam;
@@ -235,7 +235,7 @@
 
       const renderConfirmation = () => {
         document.getElementById('confirm-exam-name').textContent = selectedExam.name;
-        document.getElementById('confirm-exam-details').textContent = `Duration: ${selectedExam.duration} • Price: ${selectedExam.price}`;
+        document.getElementById('confirm-exam-details').textContent = `imageSrc: ${selectedExam.imageSrc}`;
         document.getElementById('confirm-therapist-name').textContent = selectedTherapist.name;
         document.getElementById('confirm-therapist-specialty').textContent = selectedTherapist.specialty;
         document.getElementById('confirm-date-time').textContent = `${formatDate(selectedDate)} at ${selectedTime}`;
