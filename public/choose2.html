@@ -109,15 +109,15 @@
       let selectedTherapist = null;
       let selectedDate = null;
       let selectedTime = null;
+      let patientId = null;
 
       const exams = [
-    { id: 1, name: 'Panic' , imageSrc: "images/a_girl_panicking.jpeg", alt: "Panic flag", link: "Panic.html"},
-    { id: 2, name: 'Deppression' , imageSrc: "images/depression.jpeg",alt: "Depression flag",link: "depression.html"},
-    { id: 3, name: 'Self Confidence' , imageSrc: "images/self_confidence.jpeg",alt: "Self Confidence flag",link: "SelfConfidence.html"},
-    { id: 4, name: 'Social Panic' ,imageSrc: "images/panic_attack.jpeg",alt: "Social Panic flag",link: "SocialPanic.html" },
-    { id: 5, name: 'Stress' , imageSrc: "images/stress_situation.jpeg",alt: "Stress flag",link: "Stress.html"},
-
-  ];
+        { id: 1, name: 'Panic', imageSrc: "images/a_girl_panicking.jpeg", alt: "Panic flag", link: "Panic.html" },
+        { id: 2, name: 'Depression', imageSrc: "images/depression.jpeg", alt: "Depression flag", link: "depression.html" },
+        { id: 3, name: 'Self Confidence', imageSrc: "images/self_confidence.jpeg", alt: "Self Confidence flag", link: "SelfConfidence.html" },
+        { id: 4, name: 'Social Panic', imageSrc: "images/panic_attack.jpeg", alt: "Social Panic flag", link: "SocialPanic.html" },
+        { id: 5, name: 'Stress', imageSrc: "images/stress_situation.jpeg", alt: "Stress flag", link: "Stress.html" },
+      ];
 
       const therapists = [
         { id: 1, name: 'Dr. Sarah Johnson', specialty: 'General Medicine', rating: 4.9 },
@@ -278,9 +278,32 @@
         Therapist: ${selectedTherapist.name}\n
         Date: ${formatDate(selectedDate)}\n
         Time: ${selectedTime}`);
-        
 
-        
+        // Post the booking data to the server
+        const bookingData = {
+          examId: selectedExam.id,
+          therapistId: selectedTherapist.id,
+          date: selectedDate,
+          time: selectedTime,
+          patientId: patientId
+        };
+
+        fetch('/api/bookExam', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token') // Assuming the token is stored in localStorage
+          },
+          body: JSON.stringify(bookingData)
+        })
+        .then(response => response.json())
+        .then(result => {
+          console.log('Booking confirmed:', result);
+        })
+        .catch(error => {
+          console.error('Error booking exam:', error);
+        });
+
         // Reset form
         step = 1;
         selectedExam = null;
@@ -291,16 +314,26 @@
         renderExams();
       });
 
+      // Fetch patient data from the backend
+      fetch('/api/patients', {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token') // Assuming the token is stored in localStorage
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          patientId = data[0].id; // Assuming the first patient is the one who filled the form
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching patient data:', error);
+      });
+
       renderExams();
       renderTherapists();
       renderDates();
     });
-
-    //  לייצר בקשת פוסט לשרת עם פרטי המשתמש והתוכן של 
-    // הטופס
-
-    //לאסוף את id 
-    // של המשתמש דרך בקשת גט לראוט של פציינט ולהוסיף את זה לבקשה מלמעלה
   </script>
 </body>
 </html>
