@@ -22,7 +22,7 @@ date_created:{
     }
 })
 
-exports.patientsModel = mongoose.model("patients", patientsSchema);
+exports.PatientsModel = mongoose.model("patients", patientsSchema);
 
 
 // פונקציה שמייצרת טוקן 

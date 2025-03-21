@@ -1,7 +1,7 @@
 const express = require('express');
-const { ExamsModel, validateExam } = require('../models/examsModel'); // Import the Exams model and validation function
-const { PatientModel } = require('../models/patientModel'); // Import the Patient model
-const { BookingModel } = require('../models/bookingModel'); // Import the Booking model
+const { ExamsModel } = require('../models/examsModel'); // Import the Exams model and validation function
+const { PatientsModel } = require('../models/patientsModel'); // Import the Patient model
+const { BookingModel} = require('../models/booklingModel'); // Import the Booking model
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 // Get all patients (requires authentication)
 router.get('/patients', authenticateToken, async (req, res) => {
   try {
-    let patients = await PatientModel.find({}, 'firstName lastName id');
+    let patients = await PatientsModel.find({}, 'firstName lastName id');
     res.json(patients);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving patients data', error: error.message });

@@ -103,6 +103,8 @@
   </div>
 
   <script>
+    let token = localStorage.getItem(["token"])
+    console.log(token);
     document.addEventListener('DOMContentLoaded', () => {
       let step = 1;
       let selectedExam = null;
@@ -274,6 +276,7 @@
       });
 
       document.getElementById('confirm-booking').addEventListener('click', () => {
+    
         alert(`Exam booking confirmed!\n
         Exam: ${selectedExam.name}\n
         Therapist: ${selectedTherapist.name}\n
@@ -289,7 +292,7 @@
           patientId: patientId
         };
 
-        fetch('/api/bookExam', {
+        fetch('/api/data/bookExam', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -330,10 +333,10 @@
       .catch(error => {
         console.error('Error fetching patient data:', error);
       });
-
       renderExams();
       renderTherapists();
       renderDates();
+      window.location.href('panic.html')  
     });
   </script>
 </body>
