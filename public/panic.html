@@ -107,6 +107,7 @@
     </div>
 
     <script>
+      localStorage.getItem('token')
       document.getElementById('panicExamForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const formData = new FormData(event.target);

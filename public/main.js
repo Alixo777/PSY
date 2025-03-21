@@ -28,14 +28,18 @@ formLogin.addEventListener("submit", (e) => {
   fetch("/api/patients/login", requestOptions)
     .then((response) => response.json())
     .then((result) => {
-      localStorage.setItem("token", result.token);
+      
+      // localStorage.setItem("token", result.token);
+      console.log(result);
+      console.log(result.token);
+      
 
       // Send email notification to the user after login
       // sendEmailNotification(email);
 
-      window.open("choose2.html");
+      // window.open("home.html");
     })
-    .catch((error) => console.error(error));
+    // .catch((error) => console.error(error));
 });
 
 // // Send an email notification
