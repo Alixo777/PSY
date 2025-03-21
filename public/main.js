@@ -33,7 +33,7 @@ formLogin.addEventListener("submit", (e) => {
       // Send email notification to the user after login
       // sendEmailNotification(email);
 
-      window.open("home.html");
+      window.open("choose2.html");
     })
     .catch((error) => console.error(error));
 });
