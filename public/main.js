@@ -33,7 +33,7 @@ formLogin.addEventListener("submit", (e) => {
       // Send email notification to the user after login
       // sendEmailNotification(email);
 
-      window.open("home.html");
+      window.location.href="home.html";
     })
     .catch((error) => console.error(error));
 });
